@@ -1,16 +1,20 @@
 <?php
 
-require_once('player.php');
+use PokerPlayer\GameState;
+use PokerPlayer\Player;
 
-$player = new Player();
+require_once('vendor/autoload.php');
+
+$gameState = new GameState(json_decode($_POST['game_state'], true));
+$player = new Player($gameState);
 
 switch($_POST['action'])
 {
     case 'bet_request':
-        echo $player->betRequest(json_decode($_POST['game_state'], true));
+        echo $player->betRequest();
         break;
     case 'showdown':
-        $player->showdown(json_decode($_POST['game_state'], true));
+        $player->showdown();
         break;
     case 'version':
         echo Player::VERSION;
