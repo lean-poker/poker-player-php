@@ -1,9 +1,9 @@
 <?php
 
+require_once('vendor/autoload.php');
+
 use PokerPlayer\GameState;
 use PokerPlayer\Player;
-
-require_once('vendor/autoload.php');
 
 $gameState = new GameState(json_decode($_POST['game_state'], true));
 $player = new Player($gameState);
